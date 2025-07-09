@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heroic Birthday Celebration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --spidey-blue: #2368B8;
+            --spidey-red: #D42029;
+            --ghost-black: #131313;
+            --ghost-flame: #FF4500;
+            --light: #F5F5F5;
+            --dark: #0A0A0A;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            --comic-border: 3px solid #000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Neue', cursive, sans-serif;
+        }
+        
+        @font-face {
+            font-family: 'Comic Neue';
+            src: url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--ghost-black);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: var(--comic-border);
+            box-shadow: var(--shadow);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--spidey-red), var(--ghost-flame));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--spidey-red);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--spidey-red);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: var(--light);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 50px;
+            text-align: center;
+            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/69771574-0028-4563-b0b3-63a8804530c4.png') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(19,19,19,0.7), rgba(19,19,19,0.9));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--spidey-blue), var(--spidey-red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .birthday-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--ghost-flame);
+            margin: 20px 0;
+            text-transform: uppercase;
+            animation: flameEffect 2s infinite alternate;
+        }
+        
+        /* Characters Section */
+        .characters {
+            padding: 80px 0;
+            background-color: var(--ghost-black);
+            border-top: var(--comic-border);
+            border-bottom: var(--comic-border);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--spidey-red);
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            bottom: -10px;
+            left: 0;
+            background: linear-gradient(to right, var(--spidey-blue), var(--ghost-flame));
+        }
+        
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .character-card {
+            background-color: var(--dark);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border: var(--comic-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+        
+        .character-card.spiderman {
+            background: linear-gradient(to bottom right, rgba(35, 104, 184, 0.2), rgba(212, 32, 41, 0.3));
+        }
+        
+        .character-card.ghost {
+            background: linear-gradient(to bottom right, rgba(19, 19, 19, 0.7), rgba(255, 69, 0, 0.3));
+        }
+        
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 70%);
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+        
+        .character-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--spidey-red);
+            z-index: 1;
+            position: relative;
+        }
+        
+        .ghost-icon {
+            color: var(--ghost-flame);
+            animation: flameEffect 1.5s infinite alternate;
+        }
+        
+        .character-card h3 {
+            margin-bottom: 15px;
+            font-size: 2rem;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .spiderman h3 {
+            color: var(--spidey-blue);
+        }
+        
+        .ghostrider h3 {
+            color: var(--ghost-flame);
+        }
+        
+        .character-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: var(--comic-border);
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+            background-color: var(--dark);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            border: var(--comic-border);
+            height: 250px;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Countdown Section */
+        .countdown {
+            padding: 80px 0;
+            background-color: var(--ghost-black);
+            border-top: var(--comic-border);
+            border-bottom: var(--comic-border);
+            text-align: center;
+        }
+        
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .countdown-item {
+            background-color: var(--dark);
+            padding: 20px;
+            border-radius: 8px;
+            min-width: 100px;
+            border: var(--comic-border);
+            box-shadow: var(--shadow);
+        }
+        
+        .countdown-item span {
+            display: block;
+            font-weight: 700;
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            color: var(--spidey-red);
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            color: var(--light);
+            text-transform: uppercase;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--ghost-black);
+            color: white;
+            padding: 60px 0 20px;
+            border-top: var(--comic-border);
+        }
+        
+        .footer-content {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--spidey-red), var(--ghost-flame));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            font-size: 1.8rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--spidey-red);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animations */
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes flameEffect {
+            0% {
+                text-shadow: 0 0 5px var(--ghost-flame);
+            }
+            50% {
+                text-shadow: 0 0 15px var(--ghost-flame), 0 0 20px var(--ghost-flame);
+            }
+            100% {
+                text-shadow: 0 0 10px var(--ghost-flame), 0 0 25px var(--ghost-flame), 0 0 35px var(--ghost-flame);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--ghost-black);
+                padding: 20px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+                border-top: var(--comic-border);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .birthday-text {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">HeroBirthday</a>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#characters">Heroes</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#countdown">Countdown</a>
+                    <a href="#contact">Wishes</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MANAV & GHOST BIRTHDAY BASH</h1>
+            <div class="birthday-text">HAPPY BIRTHDAY MANAV!</div>
+            <p>Your special day just got a superhero team-up with Manav's powers and the spectral might of Ghost!</p>
+        </div>
+    </section>
+
+    <section id="characters" class="characters">
+        <div class="container">
+            <div class="section-title">
+                <h2>BIRTHDAY BOIIIII AND THE CREATOR</h2>
+                <p>Celebrating with ghost flames and superhero powers</p>
+            </div>
+            <div class="characters-grid">
+                <div class="character-card spiderman">
+                    <div class="character-icon">
+                        <i class="fas fa-spider"></i>
+                    </div>
+                    <img src="manav.png" alt="Spider-Man in dynamic pose swinging through New York City skyline" class="character-image">
+                    <h3>Spider-Man</h3>
+                    <p>With great power comes great responsibility. Your friendly neighborhood hero swings in to celebrate your special day!</p>
+                    <div style="text-align: right; margin-top: 20px; font-weight: bold;">birthday boiii</div>
+                </div>
+                <div class="character-card ghostrider">
+                    <div class="character-icon ghost-icon">
+                        <i class="fas fa-ghost"></i>
+                    </div>
+                    <img src="myself.png" alt="Mysterious ghost floating ominously in the night" class="character-image">
+                    <h3>Ghost</h3>
+                    <p>The spectral spirit brings an ethereal presence to illuminate your birthday celebration with haunting energy!</p>
+                    <div style="text-align: right; margin-top: 20px; font-weight: bold;">creator</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Manav Moments</h2>
+                <p>Capturing the action-packed celebration</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="manav2.png" alt="Spider-Man web-slinging between buildings">
+                </div>
+                <div class="gallery-item">
+                    <img src="manav3.png" alt="Ethereal ghost floating through shadows">
+                </div>
+                <div class="gallery-item">
+                    <img src="myself1.png" alt="Spider-Man and Ghost Rider back-to-back in battle stance">
+                </div>
+                <div class="gallery-item">
+                    <img src="manav6.png" alt="Heroes holding birthday cake with candles">
+                </div>
+                <div class="gallery-item">
+                    <img src="manav4.png" alt="Comic-style celebration with confetti and balloons">
+                </div>
+                <div class="gallery-item">
+                    <img src="manav5.png" alt="Ghost Rider's fiery transformation moment">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="countdown" class="countdown">
+        <div class="container">
+            <div class="section-title">
+                <h2>Birthday Countdown</h2>
+                <p>The celebration begins in...</p>
+            </div>
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days" style="outline: rgb(0, 0, 0) dotted 3px; outline-offset: 1px;">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">HeroBirthday</div>
+                <p>May your birthday be as amazing as a team-up between Manav and Ghost!</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Designed with <i class="fas fa-heart" style="color: var(--ghost-flame);"></i> for the birthday boii | &copy; 2024 Superhero Celebration</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Countdown timer
+        function updateCountdown() {
+            // Set birthday to July 7 next year (month is 0-indexed, so July = 6)
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            let nextBirthday = new Date(currentYear, 6, 7); // July 7 this year
+            
+            // If July 7 already passed this year, use next year's date
+            if (now > nextBirthday) {
+                nextBirthday = new Date(currentYear + 1, 6, 7);
+            }
+
+            const birthday = nextBirthday;
+            
+            const timeLeft = birthday - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+        
+        // Add animation to character cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `zoomIn 0.5s forwards`;
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.character-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
